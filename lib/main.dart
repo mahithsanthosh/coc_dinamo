@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           fontFamily: "Poppins",
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: AppBarTheme(backgroundColor: Color(0xff191918))),
-      home: const RegisterPage(),
+      home: const LoginPage(),
     );
   }
 }
