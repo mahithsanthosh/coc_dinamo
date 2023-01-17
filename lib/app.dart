@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'dinamo',
+      title: 'dinam',
       home: const SearchScreen(),
     );
   }
