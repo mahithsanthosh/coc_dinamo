@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "947346075455",
+    "project_id": "coc-dynamo",
+    "storage_bucket": "coc-dynamo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947346075455:android:4028433f6d6d009075ad8a",
+        "android_client_info": {
+          "package_name": "com.example.coc_dynamo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947346075455-6em1rjfc8nmn7l8ps7mfl25bc2osokvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxsNsQS3v0mX2zSWLntVgjL6ge5NLQtKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947346075455-6em1rjfc8nmn7l8ps7mfl25bc2osokvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
