@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:coc_dynamo/model/fetch.dart';
+import 'package:coc_dynamo/model/profile.dart';
+import 'package:coc_dynamo/screens/profile_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class SearchBar extends StatefulWidget {
   const SearchBar({super.key});
@@ -23,33 +26,59 @@ class _SearchBarState extends State<SearchBar> {
   var isDataLoading = false.obs;
 
   getApi() async {
+    var dio = new Dio();
+    String url = 'https://api.clashofclans.com/v1/players/%2390RJ8899G';
+    String token =
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImEyYTZmNTExLTgwYTYtNDIyMS1hODA1LTNhMDNkM2FjZTkxYSIsImlhdCI6MTY3MzU4OTk5Niwic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.A6hobTPkJauuXLE9jJ5PjVuFPPxMOLXdZctcsgZogs_4c2oifp7Tk_2ktUfsqcqn6FENdh0t_27HydPUbEdNrQ";
+    dio.options.headers['content-Type'] = 'application/json';
+    dio.options.headers["authorization"] = "Bearer ${token}";
     print("inside getapi");
     try {
       isDataLoading(true);
-      http.Response response = await http.get(
-          Uri.parse('https://api.clashofclans.com/v1/players/%2390RJ8899G'),
-          headers: {
-            "Accept": "application/json",
-            "Authorization":
-                'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImEyYTZmNTExLTgwYTYtNDIyMS1hODA1LTNhMDNkM2FjZTkxYSIsImlhdCI6MTY3MzU4OTk5Niwic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.A6hobTPkJauuXLE9jJ5PjVuFPPxMOLXdZctcsgZogs_4c2oifp7Tk_2ktUfsqcqn6FENdh0t_27HydPUbEdNrQ'
-          });
+
+      final response = await dio.get(url);
+      // final response = await dio.get(
+      //     ('https://api.clashofclans.com/v1/players/%2390RJ8899G'),
+      //     headers: {
+      //       "Accept": "application/json",
+      //       "Authorization":
+      //           'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImEyYTZmNTExLTgwYTYtNDIyMS1hODA1LTNhMDNkM2FjZTkxYSIsImlhdCI6MTY3MzU4OTk5Niwic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.A6hobTPkJauuXLE9jJ5PjVuFPPxMOLXdZctcsgZogs_4c2oifp7Tk_2ktUfsqcqn6FENdh0t_27HydPUbEdNrQ'
+      //     });
+
+      // Dio.Response response = await Dio.get(
+      //     Uri.parse('https://api.clashofclans.com/v1/players/%2390RJ8899G'),
+      //     headers: {
+      //       "Accept": "application/json",
+      //       "Authorization":
+      //           'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImEyYTZmNTExLTgwYTYtNDIyMS1hODA1LTNhMDNkM2FjZTkxYSIsImlhdCI6MTY3MzU4OTk5Niwic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.A6hobTPkJauuXLE9jJ5PjVuFPPxMOLXdZctcsgZogs_4c2oifp7Tk_2ktUfsqcqn6FENdh0t_27HydPUbEdNrQ'
+      //     });
       // if (response.statusCode == 200) {
       ///data successfully
       print("inside getapi");
       print(response);
 
-      var result = jsonDecode(response.body);
+      var result = jsonDecode(response as String);
       print(result);
       // user_model = User_Model.fromJson(result);
       // } else {
       ///error
       // }
+
     } catch (e) {
       log('Error while getting data is $e');
       print('Error while getting data is $e');
     } finally {
       isDataLoading(false);
     }
+  }
+
+  // dynamic profiledata;
+  Future<void> _getPlayerData(
+      String tag, BuildContext context, VoidCallback onSuccess) async {
+    final ProfileClient profile = new ProfileClient();
+    print(tag);
+    await profile.getPlayer(tag);
+    onSuccess.call();
   }
 
   @override
@@ -120,16 +149,25 @@ class _SearchBarState extends State<SearchBar> {
             onPressed: () {
               print("object");
               // if (formKey.currentState!.validate()) {
-              getApi();
+              // getApi();
+              _getPlayerData(_valueText, context, () {
+                print("Profile");
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const ProfileScreen(),
+                //   ),
+                // );
+              });
               // _getPlayerData(_controller.text, context, () {
               //   // Navigate to the profile screen if the profile data is fetched successfully
               //   // if (_profileStore.isError == false) {
-              //   // Navigator.push(
-              //   // context,
-              //   // MaterialPageRoute(
-              //   //   builder: (context) => const ProfileScreen(),
-              //   // ),
-              //   // );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const ProfileScreen(),
+              //   ),
+              // );
               //   // }
               // });
               // }
