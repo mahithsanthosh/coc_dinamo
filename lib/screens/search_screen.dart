@@ -26,7 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
                   'Cdynamo',
                   style: TextStyle(
