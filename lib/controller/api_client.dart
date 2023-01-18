@@ -1,0 +1,9 @@
+import 'package:dio/dio.dart';
+
+class ApiClient {
+  final baseUrl = 'https://api.clashofclans.com/';
+
+  final apiKey =
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg4ZWY3YmZkLTRhOTEtNGJlYy1iYzBmLWU3YmZjODM3M2I0OCIsImlhdCI6MTY3NDAyMTY1Nywic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjE0LjE0MC4xNzkuMjIiXSwidHlwZSI6ImNsaWVudCJ9XX0.8BQD3cNKK8JwKaIs6QDDcQCILwBBKz81SoLuAxfqjvW79fqPq7QrKaa59qbgvHJttMpGAbxoBlHTWSnop9ekgg";
+  var dio = Dio();
+}

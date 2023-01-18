@@ -1,3 +1,9 @@
+import 'dart:convert';
+import 'package:get/get.dart';
+
+List<Profile> productFromJson(String str) =>
+    List<Profile>.from(json.decode(str).map((x) => Profile.fromJson(x)));
+
 class Profile {
   String? tag;
   String? name;
