@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:ui';
 
+import 'package:coc_dynamo/misc/palette.dart';
 import 'package:coc_dynamo/model/fetch.dart';
 import 'package:coc_dynamo/model/profile.dart';
 import 'package:coc_dynamo/screens/profile_screen.dart';
@@ -97,6 +99,9 @@ class _SearchBarState extends State<SearchBar> {
     if (_valueText.length < 6 && _focusNode.hasFocus) {
       return 'Must be at least 6 characters';
     }
+    if (_valueText.length > 6 && _focusNode.hasFocus) {
+      return 'Must be atmost 6 characters';
+    }
     return null;
   }
 
@@ -105,22 +110,28 @@ class _SearchBarState extends State<SearchBar> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(40),
           key: formKey,
-          child: TextFormField(
-            // autofocus: true,
+          child: TextField(
+            style: const TextStyle(
+              color: Color(0xffE0CD73),
+            ),
+            autofocus: true,
             focusNode: _focusNode,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Cant\'t be empty';
-              }
-              if (value.contains('#')) {
-                return 'Must not start with #';
-              }
-              if (value.length < 6) {
-                return 'Must be at least 6 characters';
-              }
-            },
+            // validator: (value) {
+            //   if (value!.isEmpty) {
+            //     return 'Cant\'t be empty';
+            //   }
+            //   if (value.contains('#')) {
+            //     return 'Must not start with #';
+            //   }
+            //   if (value.length < 6) {
+            //     return 'Must be at least 6 characters';
+            //   }
+            //   // if (value.length > 6) {
+            //   //   return 'Must be atmost 6 characters';
+            //   // }
+            // },
             onChanged: (value) {
               setState(() {
                 // Update the value of the text
@@ -131,15 +142,28 @@ class _SearchBarState extends State<SearchBar> {
               });
             },
             decoration: InputDecoration(
-              fillColor: const Color(0xFFF0F3F7),
+              fillColor: Palette.kprimary,
               filled: true,
               errorText: _errorText,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              labelText: 'Player Id',
+              labelText: 'Player tag',
+              labelStyle: const TextStyle(color: Color(0xffE0CD73)),
               hintText: '60YB5K',
+              hintStyle: const TextStyle(
+                color: Color(0xffE0CD73),
+              ),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(1.0)),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff323233), width: 1.2),
+                borderRadius: BorderRadius.all(Radius.circular(1)),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff29C29B), width: 1.2),
+                borderRadius: BorderRadius.all(Radius.circular(1.0)),
+              ),
             ),
           ),
         ),
@@ -180,19 +204,24 @@ class _SearchBarState extends State<SearchBar> {
             child: Ink(
               decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                    stops: [0.30, 0.70],
+                    colors: [
+                      Color(0xff29C29B),
+                      Color(0xffE0CD73),
+                    ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
-                  borderRadius: BorderRadius.circular(30.0)),
+                  borderRadius: BorderRadius.circular(1.0)),
               child: Container(
                 constraints:
                     const BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                 alignment: Alignment.center,
                 child: const Text(
-                  "hai",
+                  "Go",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 63, 23, 63), fontSize: 18),
                 ),
               ),
             ),
