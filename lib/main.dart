@@ -1,12 +1,9 @@
 import 'package:coc_dynamo/app.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({super.key, required this.title});
@@ -37,7 +34,8 @@ void main() {
 //             const Text(
 //               'You have pushed the button this many times:',
 //             ),
-//             Text(
+//
+//             ext(
 //               '$_counter',
 //               style: Theme.of(context).textTheme.headline4,
 //             ),

@@ -84,4 +84,8 @@ class AppAssets {
 
 // Level Star
   static const levelStar = 'lib/img/level_star.png';
+
+  //test images
+  static const clan_logo = 'lib/img/clan-logo-test.png';
+  static const profile_img = 'lib/img/Profile-test.jpeg';
 }

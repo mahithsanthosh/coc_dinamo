@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
   Dio dio = Dio();
-  Profile? profiledata;
+  // Profile? profiledata;
+  var profile = <Profile>[].obs;
   ApiClient api = new ApiClient();
   var isDataLoading = false;
   Future<dynamic> getPlayer(String tag) async {
@@ -21,10 +22,10 @@ class ProfileController extends GetxController {
       // final response = await dio.get('${super.baseUrl}v1/players/%23$tag');
 
       if (response.statusCode == 200) {
-        profiledata = Profile.fromJson(response.data);
-        print(profiledata?.expLevel);
+        profile = productFromJson(response.data).obs;
+        print(profile);
         isDataLoading = false;
-        return profiledata;
+        return profile;
       }
     } catch (e) {
       isDataLoading = false;

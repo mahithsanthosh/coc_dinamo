@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:coc_dynamo/controller/profile_controller.dart';
 import 'package:coc_dynamo/model/profile.dart';
-import 'package:coc_dynamo/screens/profile_screen.dart';
+import 'package:coc_dynamo/screens/profile/profile_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -148,7 +148,7 @@ class _SearchBarState extends State<SearchBar> {
                 borderRadius: BorderRadius.circular(30),
               ),
               labelText: 'Player Id',
-              hintText: '60YB5K',
+              hintText: '90rj8899g',
             ),
           ),
         ),
@@ -162,13 +162,13 @@ class _SearchBarState extends State<SearchBar> {
                 // print(_errorText());
                 _getPlayerData(_valueText, context, () {
                   // print("Profile");
-                  Get.to(ProfileScreen());
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const ProfileScreen(),
-                  //   ),
-                  // );
+                  // Get.to(ProfileScreen());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ),
+                  );
                 });
               }
             },
