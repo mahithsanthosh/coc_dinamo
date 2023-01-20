@@ -1,12 +1,15 @@
 import 'package:coc_dynamo/constants/app_pallette.dart';
 import 'package:coc_dynamo/constants/app_strings.dart';
+import 'package:coc_dynamo/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ClanSection extends StatelessWidget {
   const ClanSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ProfileController profileController = Get.put(ProfileController());
     return Container(
       width: MediaQuery.of(context).size.width * .55,
       height: 103,
@@ -23,8 +26,8 @@ class ClanSection extends StatelessWidget {
           //   fit: BoxFit.cover,
           //   scale: 2.2,
           // ),
-          Image.asset(
-            AppAssets.clan_logo,
+          Image.network(
+            profileController.products?.clan?.badgeUrls?.small ?? '',
             fit: BoxFit.cover,
             width: 52,
             height: 52,
@@ -33,8 +36,8 @@ class ClanSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                // profiledata?.clan?.name ?? '',
-                'Dinamo',
+                profileController.products?.clan?.name ?? '',
+                // 'Dinamo',
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -44,8 +47,8 @@ class ClanSection extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                // '${profiledata?.clan?.tag}',
-                "2YRL0R8LR",
+                '${profileController.products?.clan?.tag}',
+                // "2YRL0R8LR",
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

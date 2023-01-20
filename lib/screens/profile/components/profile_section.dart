@@ -1,17 +1,28 @@
 import 'package:coc_dynamo/constants/app_pallette.dart';
 import 'package:coc_dynamo/constants/app_strings.dart';
+import 'package:coc_dynamo/controller/profile_controller.dart';
 import 'package:coc_dynamo/model/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileSection extends StatelessWidget {
   const ProfileSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ProfileController profileController = Get.put(ProfileController());
     // Profile Store
-    Profile? profiledata;
-    print(profiledata?.name);
-    print(profiledata?.expLevel);
+    // Profile? profiledata;
+    // print(profiledata?.name);
+    // print(profiledata?.expLevel);
+
+// var data = Get.arguments;
+    @override
+    void initState() {
+      // super.initState();
+      var products = profileController.products;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,8 +48,8 @@ class ProfileSection extends StatelessWidget {
                           Positioned(
                               top: 8,
                               child: Text(
-                                // '${profiledata?.expLevel}',
-                                "158",
+                                '${profileController.products?.expLevel}',
+                                // "158",
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
@@ -65,8 +76,8 @@ class ProfileSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      // '${profiledata?.name}',
-                      "Anlinbabu",
+                      '${profileController.products?.name}',
+                      // "Anlinbabu",
                       style: TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.w800,
@@ -75,8 +86,8 @@ class ProfileSection extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 8),
                       child: Text(
-                        // '${profiledata?.tag}',
-                        "#90RJ8899G",
+                        '${profileController.products?.tag}',
+                        // "#90RJ8899G",
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w700,

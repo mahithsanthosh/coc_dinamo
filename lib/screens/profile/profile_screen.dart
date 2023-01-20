@@ -4,7 +4,9 @@ import 'package:coc_dynamo/model/profile.dart';
 import 'package:coc_dynamo/screens/profile/components/clan_section.dart';
 import 'package:coc_dynamo/screens/profile/components/league_section.dart';
 import 'package:coc_dynamo/screens/profile/components/profile_section.dart';
+import 'package:coc_dynamo/screens/profile/components/troops.dart';
 import 'package:coc_dynamo/screens/profile/components/troops_section.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,21 +19,21 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-final profileController = Get.put(ProfileController());
+final ProfileController profileController = Get.put(ProfileController());
 
 // var data = Get.arguments;
 @override
 void initState() {
   // super.initState();
-  profileController.getPlayer("90rj8899g");
+  var products = profileController.products;
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Profile? profiledata;
-    print(profileController.profile);
-    print(profileController.profile);
+    // print(profileController.profile);
+    // print(profileController.profile);
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -64,7 +66,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: 15,
                           ),
-
                           Column(
                             children: [
                               Row(
@@ -79,6 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           ),
                           // const TroopsSection(),
+                          Troopinfo()
                         ],
                       ))))),
     );

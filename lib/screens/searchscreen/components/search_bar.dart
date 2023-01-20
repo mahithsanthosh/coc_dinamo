@@ -22,60 +22,13 @@ class _SearchBarState extends State<SearchBar> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode _focusNode = FocusNode();
   final TextEditingController _controller = TextEditingController();
-  var isDataLoading = false.obs;
-
-  getApi() async {
-    var dio = new Dio();
-    String url = 'https://api.clashofclans.com/v1/players/%2390RJ8899G';
-    String token =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg4ZWY3YmZkLTRhOTEtNGJlYy1iYzBmLWU3YmZjODM3M2I0OCIsImlhdCI6MTY3NDAyMTY1Nywic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjE0LjE0MC4xNzkuMjIiXSwidHlwZSI6ImNsaWVudCJ9XX0.8BQD3cNKK8JwKaIs6QDDcQCILwBBKz81SoLuAxfqjvW79fqPq7QrKaa59qbgvHJttMpGAbxoBlHTWSnop9ekgg";
-    dio.options.headers['content-Type'] = 'application/json';
-    dio.options.headers["authorization"] = "Bearer ${token}";
-    print("inside getapi");
-    try {
-      isDataLoading(true);
-
-      final response = await dio.get(url);
-      // final response = await dio.get(
-      //     ('https://api.clashofclans.com/v1/players/%2390RJ8899G'),
-      //     headers: {
-      //       "Accept": "application/json",
-      //       "Authorization":
-      //           'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImEyYTZmNTExLTgwYTYtNDIyMS1hODA1LTNhMDNkM2FjZTkxYSIsImlhdCI6MTY3MzU4OTk5Niwic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.A6hobTPkJauuXLE9jJ5PjVuFPPxMOLXdZctcsgZogs_4c2oifp7Tk_2ktUfsqcqn6FENdh0t_27HydPUbEdNrQ'
-      //     });
-
-      // Dio.Response response = await Dio.get(
-      //     Uri.parse('https://api.clashofclans.com/v1/players/%2390RJ8899G'),
-      //     headers: {
-      //       "Accept": "application/json",
-      //       "Authorization":
-      //           'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImEyYTZmNTExLTgwYTYtNDIyMS1hODA1LTNhMDNkM2FjZTkxYSIsImlhdCI6MTY3MzU4OTk5Niwic3ViIjoiZGV2ZWxvcGVyLzcxYzU0YjEwLWZiOTAtYzcyNy00MzJhLTgxNDVlMWU4NjMyMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.A6hobTPkJauuXLE9jJ5PjVuFPPxMOLXdZctcsgZogs_4c2oifp7Tk_2ktUfsqcqn6FENdh0t_27HydPUbEdNrQ'
-      //     });
-      // if (response.statusCode == 200) {
-      ///data successfully
-      print("inside getapi");
-      print(response);
-
-      var result = jsonDecode(response as String);
-      print(result);
-      // user_model = User_Model.fromJson(result);
-      // } else {
-      ///error
-      // }
-    } catch (e) {
-      log('Error while getting data is $e');
-      print('Error while getting data is $e');
-    } finally {
-      isDataLoading(false);
-    }
-  }
 
   dynamic data;
   Future<void> _getPlayerData(
       String tag, BuildContext context, VoidCallback onSuccess) async {
     final ProfileController profile = new ProfileController();
     print(tag);
-    data = await profile.getPlayer(tag);
+    // data = await profile.onInit();
     print(data);
     onSuccess.call();
     return data;
