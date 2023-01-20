@@ -1,139 +1,457 @@
-// To parse this JSON data, do
-//
-//     final product = productFromJson(jsonString);
-
 import 'dart:convert';
-
 import 'package:get/get.dart';
 
 List<Product> productFromJson(String str) =>
     List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
 
-String productToJson(List<Product> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class Product {
-  Product({
-    required this.id,
-    required this.brand,
-    required this.name,
-    required this.price,
-    this.priceSign,
-    this.currency,
-    required this.imageLink,
-    required this.productLink,
-    required this.websiteLink,
-    required this.description,
-    this.rating,
-    this.category,
-    required this.productType,
-    required this.tagList,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.productApiUrl,
-    required this.apiFeaturedImage,
-    required this.productColors,
-  });
+  String? tag;
+  String? name;
+  int? townHallLevel;
+  int? townHallWeaponLevel;
+  int? expLevel;
+  int? trophies;
+  int? bestTrophies;
+  int? warStars;
+  int? attackWins;
+  int? defenseWins;
+  int? builderHallLevel;
+  int? versusTrophies;
+  int? bestVersusTrophies;
+  int? versusBattleWins;
+  String? role;
+  String? warPreference;
+  int? donations;
+  int? donationsReceived;
+  int? clanCapitalContributions;
+  Clan? clan;
+  League? league;
+  List<Achievements>? achievements;
+  PlayerHouse? playerHouse;
+  int? versusBattleWinCount;
+  List<Labels>? labels;
+  List<Troops>? troops;
+  List<Heroes>? heroes;
+  List<Spells>? spells;
 
-  int id;
-  Brand brand;
-  String name;
-  String price;
-  dynamic priceSign;
-  dynamic currency;
-  String imageLink;
-  String productLink;
-  String websiteLink;
-  String description;
-  double? rating;
-  String? category;
-  String productType;
-  List<dynamic> tagList;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String productApiUrl;
-  String apiFeaturedImage;
-  List<ProductColor> productColors;
-  var isFavorite = false.obs;
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
-        id: json["id"],
-        brand: brandValues.map[json["brand"]]!,
-        name: json["name"],
-        price: json["price"],
-        priceSign: json["price_sign"],
-        currency: json["currency"],
-        imageLink: json["image_link"],
-        productLink: json["product_link"],
-        websiteLink: json["website_link"],
-        description: json["description"],
-        rating: json["rating"]?.toDouble(),
-        category: json["category"],
-        productType: json["product_type"],
-        tagList: List<dynamic>.from(json["tag_list"].map((x) => x)),
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        productApiUrl: json["product_api_url"],
-        apiFeaturedImage: json["api_featured_image"],
-        productColors: List<ProductColor>.from(
-            json["product_colors"].map((x) => ProductColor.fromJson(x))),
-      );
+  Product(
+      {this.tag,
+      this.name,
+      this.townHallLevel,
+      this.townHallWeaponLevel,
+      this.expLevel,
+      this.trophies,
+      this.bestTrophies,
+      this.warStars,
+      this.attackWins,
+      this.defenseWins,
+      this.builderHallLevel,
+      this.versusTrophies,
+      this.bestVersusTrophies,
+      this.versusBattleWins,
+      this.role,
+      this.warPreference,
+      this.donations,
+      this.donationsReceived,
+      this.clanCapitalContributions,
+      this.clan,
+      this.league,
+      this.achievements,
+      this.playerHouse,
+      this.versusBattleWinCount,
+      this.labels,
+      this.troops,
+      this.heroes,
+      this.spells});
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "brand": brandValues.reverse[brand],
-        "name": name,
-        "price": price,
-        "price_sign": priceSign,
-        "currency": currency,
-        "image_link": imageLink,
-        "product_link": productLink,
-        "website_link": websiteLink,
-        "description": description,
-        "rating": rating,
-        "category": category,
-        "product_type": productType,
-        "tag_list": List<dynamic>.from(tagList.map((x) => x)),
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "product_api_url": productApiUrl,
-        "api_featured_image": apiFeaturedImage,
-        "product_colors":
-            List<dynamic>.from(productColors.map((x) => x.toJson())),
-      };
+  Product.fromJson(Map<String, dynamic> json) {
+    tag = json['tag'];
+    name = json['name'];
+    townHallLevel = json['townHallLevel'];
+    townHallWeaponLevel = json['townHallWeaponLevel'];
+    expLevel = json['expLevel'];
+    trophies = json['trophies'];
+    bestTrophies = json['bestTrophies'];
+    warStars = json['warStars'];
+    attackWins = json['attackWins'];
+    defenseWins = json['defenseWins'];
+    builderHallLevel = json['builderHallLevel'];
+    versusTrophies = json['versusTrophies'];
+    bestVersusTrophies = json['bestVersusTrophies'];
+    versusBattleWins = json['versusBattleWins'];
+    role = json['role'];
+    warPreference = json['warPreference'];
+    donations = json['donations'];
+    donationsReceived = json['donationsReceived'];
+    clanCapitalContributions = json['clanCapitalContributions'];
+    clan = json['clan'] != null ? new Clan.fromJson(json['clan']) : null;
+    league =
+        json['league'] != null ? new League.fromJson(json['league']) : null;
+    if (json['achievements'] != null) {
+      achievements = <Achievements>[];
+      json['achievements'].forEach((v) {
+        achievements!.add(new Achievements.fromJson(v));
+      });
+    }
+    playerHouse = json['playerHouse'] != null
+        ? new PlayerHouse.fromJson(json['playerHouse'])
+        : null;
+    versusBattleWinCount = json['versusBattleWinCount'];
+    if (json['labels'] != null) {
+      labels = <Labels>[];
+      json['labels'].forEach((v) {
+        labels!.add(new Labels.fromJson(v));
+      });
+    }
+    if (json['troops'] != null) {
+      troops = <Troops>[];
+      json['troops'].forEach((v) {
+        troops!.add(new Troops.fromJson(v));
+      });
+    }
+    if (json['heroes'] != null) {
+      heroes = <Heroes>[];
+      json['heroes'].forEach((v) {
+        heroes!.add(new Heroes.fromJson(v));
+      });
+    }
+    if (json['spells'] != null) {
+      spells = <Spells>[];
+      json['spells'].forEach((v) {
+        spells!.add(new Spells.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['tag'] = this.tag;
+    data['name'] = this.name;
+    data['townHallLevel'] = this.townHallLevel;
+    data['townHallWeaponLevel'] = this.townHallWeaponLevel;
+    data['expLevel'] = this.expLevel;
+    data['trophies'] = this.trophies;
+    data['bestTrophies'] = this.bestTrophies;
+    data['warStars'] = this.warStars;
+    data['attackWins'] = this.attackWins;
+    data['defenseWins'] = this.defenseWins;
+    data['builderHallLevel'] = this.builderHallLevel;
+    data['versusTrophies'] = this.versusTrophies;
+    data['bestVersusTrophies'] = this.bestVersusTrophies;
+    data['versusBattleWins'] = this.versusBattleWins;
+    data['role'] = this.role;
+    data['warPreference'] = this.warPreference;
+    data['donations'] = this.donations;
+    data['donationsReceived'] = this.donationsReceived;
+    data['clanCapitalContributions'] = this.clanCapitalContributions;
+    if (this.clan != null) {
+      data['clan'] = this.clan!.toJson();
+    }
+    if (this.league != null) {
+      data['league'] = this.league!.toJson();
+    }
+    if (this.achievements != null) {
+      data['achievements'] = this.achievements!.map((v) => v.toJson()).toList();
+    }
+    if (this.playerHouse != null) {
+      data['playerHouse'] = this.playerHouse!.toJson();
+    }
+    data['versusBattleWinCount'] = this.versusBattleWinCount;
+    if (this.labels != null) {
+      data['labels'] = this.labels!.map((v) => v.toJson()).toList();
+    }
+    if (this.troops != null) {
+      data['troops'] = this.troops!.map((v) => v.toJson()).toList();
+    }
+    if (this.heroes != null) {
+      data['heroes'] = this.heroes!.map((v) => v.toJson()).toList();
+    }
+    if (this.spells != null) {
+      data['spells'] = this.spells!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-enum Brand { MAYBELLINE }
+class Clan {
+  String? tag;
+  String? name;
+  int? clanLevel;
+  BadgeUrls? badgeUrls;
 
-final brandValues = EnumValues({"maybelline": Brand.MAYBELLINE});
+  Clan({this.tag, this.name, this.clanLevel, this.badgeUrls});
 
-class ProductColor {
-  ProductColor({
-    required this.hexValue,
-    this.colourName,
-  });
+  Clan.fromJson(Map<String, dynamic> json) {
+    tag = json['tag'];
+    name = json['name'];
+    clanLevel = json['clanLevel'];
+    badgeUrls = json['badgeUrls'] != null
+        ? new BadgeUrls.fromJson(json['badgeUrls'])
+        : null;
+  }
 
-  String hexValue;
-  String? colourName;
-
-  factory ProductColor.fromJson(Map<String, dynamic> json) => ProductColor(
-        hexValue: json["hex_value"],
-        colourName: json["colour_name"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "hex_value": hexValue,
-        "colour_name": colourName,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['tag'] = this.tag;
+    data['name'] = this.name;
+    data['clanLevel'] = this.clanLevel;
+    if (this.badgeUrls != null) {
+      data['badgeUrls'] = this.badgeUrls!.toJson();
+    }
+    return data;
+  }
 }
 
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
+class BadgeUrls {
+  String? small;
+  String? large;
+  String? medium;
 
-  EnumValues(this.map);
+  BadgeUrls({this.small, this.large, this.medium});
 
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
+  BadgeUrls.fromJson(Map<String, dynamic> json) {
+    small = json['small'];
+    large = json['large'];
+    medium = json['medium'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['small'] = this.small;
+    data['large'] = this.large;
+    data['medium'] = this.medium;
+    return data;
+  }
+}
+
+class League {
+  int? id;
+  String? name;
+  IconUrls? iconUrls;
+
+  League({this.id, this.name, this.iconUrls});
+
+  League.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    iconUrls = json['iconUrls'] != null
+        ? new IconUrls.fromJson(json['iconUrls'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    if (this.iconUrls != null) {
+      data['iconUrls'] = this.iconUrls!.toJson();
+    }
+    return data;
+  }
+}
+
+class Achievements {
+  String? name;
+  int? stars;
+  int? value;
+  int? target;
+  String? info;
+  String? completionInfo;
+  String? village;
+
+  Achievements(
+      {this.name,
+      this.stars,
+      this.value,
+      this.target,
+      this.info,
+      this.completionInfo,
+      this.village});
+
+  Achievements.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    stars = json['stars'];
+    value = json['value'];
+    target = json['target'];
+    info = json['info'];
+    completionInfo = json['completionInfo'];
+    village = json['village'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['stars'] = this.stars;
+    data['value'] = this.value;
+    data['target'] = this.target;
+    data['info'] = this.info;
+    data['completionInfo'] = this.completionInfo;
+    data['village'] = this.village;
+    return data;
+  }
+}
+
+class PlayerHouse {
+  List<Elements>? elements;
+
+  PlayerHouse({this.elements});
+
+  PlayerHouse.fromJson(Map<String, dynamic> json) {
+    if (json['elements'] != null) {
+      elements = <Elements>[];
+      json['elements'].forEach((v) {
+        elements!.add(new Elements.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.elements != null) {
+      data['elements'] = this.elements!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Elements {
+  String? type;
+  int? id;
+
+  Elements({this.type, this.id});
+
+  Elements.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['type'] = this.type;
+    data['id'] = this.id;
+    return data;
+  }
+}
+
+class Labels {
+  int? id;
+  String? name;
+  IconUrls? iconUrls;
+
+  Labels({this.id, this.name, this.iconUrls});
+
+  Labels.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    iconUrls = json['iconUrls'] != null
+        ? new IconUrls.fromJson(json['iconUrls'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    if (this.iconUrls != null) {
+      data['iconUrls'] = this.iconUrls!.toJson();
+    }
+    return data;
+  }
+}
+
+class IconUrls {
+  String? small;
+  String? tiny;
+  String? medium;
+
+  IconUrls({this.small, this.tiny, this.medium});
+
+  IconUrls.fromJson(Map<String, dynamic> json) {
+    small = json['small'];
+    tiny = json['tiny'];
+    medium = json['medium'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['small'] = this.small;
+    data['tiny'] = this.tiny;
+    data['medium'] = this.medium;
+    return data;
+  }
+}
+
+class Troops {
+  String? name;
+  int? level;
+  int? maxLevel;
+  String? village;
+
+  Troops({this.name, this.level, this.maxLevel, this.village});
+
+  Troops.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    level = json['level'];
+    maxLevel = json['maxLevel'];
+    village = json['village'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['level'] = this.level;
+    data['maxLevel'] = this.maxLevel;
+    data['village'] = this.village;
+    return data;
+  }
+}
+
+class Heroes {
+  String? name;
+  int? level;
+  int? maxLevel;
+  String? village;
+
+  Heroes({this.name, this.level, this.maxLevel, this.village});
+
+  Heroes.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    level = json['level'];
+    maxLevel = json['maxLevel'];
+    village = json['village'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['level'] = this.level;
+    data['maxLevel'] = this.maxLevel;
+    data['village'] = this.village;
+    return data;
+  }
+}
+
+class Spells {
+  String? name;
+  int? level;
+  int? maxLevel;
+  String? village;
+
+  Spells({this.name, this.level, this.maxLevel, this.village});
+
+  Spells.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    level = json['level'];
+    maxLevel = json['maxLevel'];
+    village = json['village'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['level'] = this.level;
+    data['maxLevel'] = this.maxLevel;
+    data['village'] = this.village;
+    return data;
   }
 }

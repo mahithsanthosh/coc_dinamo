@@ -25,7 +25,7 @@ class ProductTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Image.network(
-                    product.imageLink,
+                    product.league!.iconUrls!.medium!,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -34,12 +34,10 @@ class ProductTile extends StatelessWidget {
                   child: Obx(() => CircleAvatar(
                         backgroundColor: Colors.white,
                         child: IconButton(
-                          icon: product.isFavorite.value
+                          icon: true
                               ? const Icon(Icons.favorite_rounded)
                               : const Icon(Icons.favorite_border),
-                          onPressed: () {
-                            product.isFavorite.toggle();
-                          },
+                          onPressed: () {},
                         ),
                       )),
                 )
@@ -47,14 +45,14 @@ class ProductTile extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              product.name,
+              product!.name!,
               maxLines: 2,
               style:
                   TextStyle(fontFamily: 'avenir', fontWeight: FontWeight.w800),
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 8),
-            if (product.rating != null)
+            if (product.trophies != null)
               Container(
                 decoration: BoxDecoration(
                   color: Colors.green,
@@ -65,7 +63,7 @@ class ProductTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      product.rating.toString(),
+                      product.trophies.toString(),
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
@@ -77,7 +75,7 @@ class ProductTile extends StatelessWidget {
                 ),
               ),
             SizedBox(height: 8),
-            Text('\$${product.price}',
+            Text('\$${product.expLevel}',
                 style: TextStyle(fontSize: 32, fontFamily: 'avenir')),
           ],
         ),

@@ -56,11 +56,11 @@ class HomePage extends StatelessWidget {
                 // ignore: curly_braces_in_flow_control_structures
                 return StaggeredGridView.countBuilder(
                   crossAxisCount: 2,
-                  itemCount: productController.productList.length,
+                  itemCount: 1,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                   itemBuilder: (context, index) {
-                    return ProductTile(productController.productList[index]);
+                    return ProductTile(productController.products);
                   },
                   staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                 );
