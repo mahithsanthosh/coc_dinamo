@@ -43,6 +43,12 @@ class Troopinfo extends StatelessWidget {
       'Miner': AppAssets.miner,
       'Electro Dragon': AppAssets.electro_dragon,
       'Ice Golem': AppAssets.ice_golem,
+      'Yeti': AppAssets.yeti,
+      'Headhunter': AppAssets.head_hunter,
+      //workshop
+      'Wall Wrecker': AppAssets.wall_wrecker,
+      'Battle Blimp': AppAssets.battle_blimp,
+      'Stone Slammer': AppAssets.stone_slammer,
 
       // Super Troopies
       'Super Barbarian': AppAssets.super_barbarian,
@@ -59,7 +65,7 @@ class Troopinfo extends StatelessWidget {
       'Rocket Balloon': AppAssets.rocket_balloon,
       'Sneaky Goblin': AppAssets.sneaky_goblin,
       'Ice Hound': AppAssets.ice_hound,
-
+      'Super Miner': AppAssets.super_miner,
       // Builder hall troopies
       'Raged Barbarian': AppAssets.raged_barbarian,
       'Sneaky Archer': AppAssets.sneaky_archer,
@@ -69,92 +75,108 @@ class Troopinfo extends StatelessWidget {
       'Cannon Cart': AppAssets.cannon_cart,
       'Night Witch': AppAssets.night_witch,
       'Drop Ship': AppAssets.drop_ship,
-      'Super Pekka': AppAssets.super_pekka,
+      'Super P.E.K.K.A': AppAssets.super_pekka,
       'Hog Glider': AppAssets.hog_glider,
     };
     print(profileController.products?.troops![2].name);
     return SingleChildScrollView(
-      child: Wrap(
+        child: Column(
+      children: [
+        Container(
+          alignment: Alignment.topLeft,
+          child: Text("Troops"),
+        ),
+        Wrap(
           direction: Axis.horizontal,
           children: List.generate(
               profileController.products?.troops?.length ?? 0,
-              (index) => troopsicon(
-                    index,
-                    troops,
-                  ))),
-      // child: Container(
-      //     height: 400,
-      //     child: ListView.builder(
-      //       // scrollDirection: Axis.horizontal,
-      //       itemCount: profileController.products?.troops?.length,
-      //       itemBuilder: (context, index) {
-      //         return Text("aiofhaf");
-      //       },
-      //     )
-      // child: Text("aoknf"),
-    );
+              (index) => troopsicon(index, troops, "home")),
+        ),
+        Wrap(
+          direction: Axis.horizontal,
+          children: List.generate(
+              profileController.products?.troops?.length ?? 0,
+              (index) => troopsicon(index, troops, "builderBase")),
+        )
+      ],
+    ));
   }
 }
 
-Widget troopsicon(
-  int index,
-  troops,
-) {
+Widget troopsicon(int index, troops, String base) {
   final ProfileController profileController = Get.put(ProfileController());
-
+  print(troops[profileController.products?.troops![index].village]);
+  // if (troops[profileController.products?.troops![index].village] == "base") {
   return Padding(
-    padding: EdgeInsets.all(10),
-    child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Container(
-        width: 110,
-        height: 145,
-        decoration: BoxDecoration(
-          color: Palette.villageGridColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(right: 30, top: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                troops[index].name! ==
-                        profileController.products?.troops![index].name
-                    ? troops[index].name
-                    : '',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                profileController.products?.troops![index].name ?? '',
-                style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: Palette.brown),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Level : ${profileController.products?.troops![index].level ?? ''}',
-                style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: Palette.brown),
-              ),
-              Text(
-                'Max Level : ${profileController.products?.troops![index].maxLevel ?? ''}',
-                style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: Palette.brown),
-              ),
-            ],
+    padding: EdgeInsets.all(2),
+    child: Stack(
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: EdgeInsets.all(2),
+          child: CircleAvatar(
+            radius: 20,
+            child: Image.asset(
+              '${troops[profileController.products?.troops![index].name]}',
+            ),
           ),
         ),
-      ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: Container(
+            width: 15,
+            height: 15,
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 59, 59, 59), shape: BoxShape.circle),
+            child: Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Text(
+                ' ${profileController.products?.troops![index].level ?? ''}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromARGB(255, 255, 60, 0)),
+              ),
+            ),
+          ),
+        ),
+
+        Positioned(
+          top: 0,
+          right: 0,
+          child: Container(
+            width: 15,
+            height: 15,
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 70, 70, 70), shape: BoxShape.circle),
+            child: Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Text(
+                '${profileController.products?.troops![index].maxLevel ?? ''}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromARGB(255, 255, 81, 0)),
+              ),
+            ),
+          ),
+        ),
+        // Text(
+        //   profileController.products?.troops![index].name ?? '',
+        //   style: TextStyle(
+        //       fontSize: 11,
+        //       fontWeight: FontWeight.w600,
+        //       color: Palette.brown),
+        // ),
+        SizedBox(
+          height: 10,
+        ),
+      ],
     ),
   );
+  // }
+  // return Text("Error");
 }

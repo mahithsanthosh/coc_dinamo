@@ -5,7 +5,6 @@ import 'package:coc_dynamo/screens/profile/components/clan_section.dart';
 import 'package:coc_dynamo/screens/profile/components/league_section.dart';
 import 'package:coc_dynamo/screens/profile/components/profile_section.dart';
 import 'package:coc_dynamo/screens/profile/components/troops.dart';
-import 'package:coc_dynamo/screens/profile/components/troops_section.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';

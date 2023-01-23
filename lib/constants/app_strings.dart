@@ -29,7 +29,6 @@ class AppAssets {
   static const electro_dragon = 'lib/img/troops/Electro_Dragon.webp';
   static const yeti = 'lib/img/troops/Yeti.webp';
   static const dragon_rider = 'lib/img/troops/Dragon_Rider.webp';
-
 // Dark Elixir Troops
   static const minion = 'lib/img/troops/Minion.webp';
   static const hog_rider = 'lib/img/troops/Hog_Rider.webp';
@@ -39,7 +38,7 @@ class AppAssets {
   static const bowler = 'lib/img/troops/Bowler.webp';
   static const ice_golem = 'lib/img/troops/Ice_Golem.webp';
   static const head_hunter = 'lib/img/troops/Headhunter.webp';
-
+  static const headhunter = 'lib/img/troops/Headhunter_info.webp';
 // Super Troops
   static const super_barbarian = 'lib/img/troops/Super_Barbarian.webp';
   static const super_archer = 'lib/img/troops/Super_Archer.webp';
@@ -55,7 +54,7 @@ class AppAssets {
   static const super_witch = 'lib/img/troops/Super_Witch.webp';
   static const ice_hound = 'lib/img/troops/Ice_Hound.webp';
   static const super_bowler = 'lib/img/troops/Super_Bowler.webp';
-
+  static const super_miner = 'lib/img/troops/Super_Miner_info.webp';
 // Builder Base Troops
   static const raged_barbarian = 'lib/img/troops/Raged_Barbarian.webp';
   static const sneaky_archer = 'lib/img/troops/Sneaky_Archer.webp';
@@ -81,6 +80,10 @@ class AppAssets {
   static const invisibility_spell = 'lib/img/spells/Invisibility_Spell.webp';
   static const jump_spell = 'lib/img/spells/Jump_Spell.webp';
   static const rage_spell = 'lib/img/spells/Rage_Spell.webp';
+//workshop
+  static const stone_slammer = 'lib/img/workshop/Stone_Slammer_info.webp';
+  static const wall_wrecker = 'lib/img/workshop/Wall_Wrecker_info.webp';
+  static const battle_blimp = 'lib/img/workshop/Battle_Blimp_info.webp';
 
 // Level Star
   static const levelStar = 'lib/img/level_star.png';
