@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                   itemBuilder: (context, index) {
-                    return ProductTile(productController.products);
+                    return ProductTile();
                   },
                   staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                 );

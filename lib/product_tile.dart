@@ -1,10 +1,10 @@
+import 'package:coc_dynamo/controller.dart';
 import 'package:coc_dynamo/model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductTile extends StatelessWidget {
-  final Product product;
-  const ProductTile(this.product);
+  final ProductController productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ProductTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Image.network(
-                    product.league!.iconUrls!.medium!,
+                    productController.products.league!.iconUrls!.medium!,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,14 +45,14 @@ class ProductTile extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              product!.name!,
+              productController.products.name!,
               maxLines: 2,
               style:
                   TextStyle(fontFamily: 'avenir', fontWeight: FontWeight.w800),
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 8),
-            if (product.trophies != null)
+            if (productController.products.trophies != null)
               Container(
                 decoration: BoxDecoration(
                   color: Colors.green,
@@ -63,7 +63,7 @@ class ProductTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      product.trophies.toString(),
+                      productController.products.trophies.toString(),
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
@@ -75,7 +75,7 @@ class ProductTile extends StatelessWidget {
                 ),
               ),
             SizedBox(height: 8),
-            Text('\$${product.expLevel}',
+            Text('\$${productController.products.attackWins}',
                 style: TextStyle(fontSize: 32, fontFamily: 'avenir')),
           ],
         ),

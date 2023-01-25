@@ -31,7 +31,7 @@ class RemoteServices {
   ApiClient api = new ApiClient();
   var isDataLoading = false;
   Future<dynamic> getPlayer(String tag) async {
-    isDataLoading = true;
+    isDataLoading = true; 
     dio.options.headers['Authorization'] =
         'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjI4OTFlZDhkLTU4NTctNDY0MS1iOTk1LTEyNGNkMDg3ODhhZSIsImlhdCI6MTY3NDE4OTg0OSwic3ViIjoiZGV2ZWxvcGVyLzYxZmE0OTE4LWM4ZDQtYjdiOS02YmFhLTkzOGM5MGYyMmVjMyIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExNy4yMzkuMjUxLjU4Il0sInR5cGUiOiJjbGllbnQifV19.IVAzANtZ2G_578gfa4ozZ293B_qKhjOH2vQ_z4qkPrbNIhLTp06ij2Vlva-_voJUeBiGfLIG8BYZoyLCXvm1yw';
     dio.options.headers['content-Type'] = 'application/json';
