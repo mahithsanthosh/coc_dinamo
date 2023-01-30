@@ -3,12 +3,17 @@ import 'package:coc_dynamo/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LeagueSection extends StatelessWidget {
+class StatsSection extends StatelessWidget {
   late Color color;
   late String link;
   late String? name;
-  LeagueSection(
-      {Key? key, required this.color, required this.link, required this.name})
+  late double width;
+  StatsSection(
+      {Key? key,
+      required this.color,
+      required this.link,
+      required this.name,
+      required this.width})
       : super(key: key);
 
   @override
@@ -16,7 +21,7 @@ class LeagueSection extends StatelessWidget {
     final ProfileController profileController = Get.put(ProfileController());
 
     return Container(
-      width: MediaQuery.of(context).size.width / 2.4,
+      width: width,
       height: 35,
       decoration: BoxDecoration(
         color: color,
@@ -26,7 +31,7 @@ class LeagueSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.network(
+          Image.asset(
             link,
             // "https://api-assets.clashofclans.com/leagues/288/kSfTyNNVSvogX3dMvpFUTt72VW74w6vEsEFuuOV4osQ.png",
             width: 30, height: 30,
@@ -35,7 +40,7 @@ class LeagueSection extends StatelessWidget {
             name!,
             // "Crystal League I",
             style: const TextStyle(
-                fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white),
+                fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white),
             textAlign: TextAlign.center,
           ),
         ],

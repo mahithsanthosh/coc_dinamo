@@ -22,12 +22,12 @@ class _SearchBarState extends State<SearchBar> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode _focusNode = FocusNode();
   final TextEditingController _controller = TextEditingController();
+  final ProfileController profileController = Get.put(ProfileController());
 
   dynamic data;
   Future<void> _getPlayerData(
       String tag, BuildContext context, VoidCallback onSuccess) async {
-    final ProfileController profile = new ProfileController();
-    print(tag);
+    final ProfileController profile = Get.put(ProfileController());
     // data = await profile.onInit();
     print(data);
     onSuccess.call();
@@ -71,7 +71,7 @@ class _SearchBarState extends State<SearchBar> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           key: formKey,
           child: TextFormField(
             // autofocus: true,
@@ -126,22 +126,23 @@ class _SearchBarState extends State<SearchBar> {
               }
             },
             style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
             ),
             child: Ink(
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Color(0xff374ABE), Color(0xff64B6FF)],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
                   borderRadius: BorderRadius.circular(30.0)),
               child: Container(
-                constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                constraints:
+                    const BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   "hai",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),

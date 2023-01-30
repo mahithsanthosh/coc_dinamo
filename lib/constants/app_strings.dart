@@ -1,6 +1,11 @@
 class AppAssets {
   static const homeTitle = 'Home';
   static const appName = 'Clash of Clans App';
+  static const townhall = "lib/img/townhall.png";
+  static const leagueIcon = "lib/img/Titan3.png";
+  static const attackWon = "lib/img/attack-won.png";
+  static const defenseWon = "lib/img/defense.png";
+  static const warStar = "lib/img/star.png";
 
 // Defense Shield
   static const defenseShield = 'lib/img/defense_shield.png';

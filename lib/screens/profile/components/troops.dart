@@ -78,105 +78,135 @@ class Troopinfo extends StatelessWidget {
       'Super P.E.K.K.A': AppAssets.super_pekka,
       'Hog Glider': AppAssets.hog_glider,
     };
-    print(profileController.products?.troops![2].name);
+
     return SingleChildScrollView(
-        child: Column(
-      children: [
-        Container(
-          alignment: Alignment.topLeft,
-          child: Text("Troops"),
-        ),
-        Wrap(
-          direction: Axis.horizontal,
-          children: List.generate(
-              profileController.products?.troops?.length ?? 0,
-              (index) => troopsicon(index, troops, "home")),
-        ),
-        Wrap(
-          direction: Axis.horizontal,
-          children: List.generate(
-              profileController.products?.troops?.length ?? 0,
-              (index) => troopsicon(index, troops, "builderBase")),
-        )
-      ],
+        child: Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          color: Palette.grey2.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(8)),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.topLeft,
+            child: const Text(
+              "Troops",
+              style: TextStyle(color: Colors.grey, fontSize: 20),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Wrap(
+            direction: Axis.horizontal,
+            children: List.generate(
+                profileController.products?.troops?.length ?? 0,
+                (index) => troopsicon(index, troops, "home")),
+          ),
+          // Wrap(
+          //   direction: Axis.horizontal,
+          //   children: List.generate(
+          //       profileController.products?.troops?.length ?? 0,
+          //       (index) => troopsicon(index, troops, "builderBase")),
+          // )
+        ],
+      ),
     ));
   }
 }
 
 Widget troopsicon(int index, troops, String base) {
   final ProfileController profileController = Get.put(ProfileController());
-  print(troops[profileController.products?.troops![index].village]);
+  print(profileController.products?.troops![index].name);
   // if (troops[profileController.products?.troops![index].village] == "base") {
-  return Padding(
-    padding: EdgeInsets.all(2),
-    child: Stack(
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.all(2),
-          child: CircleAvatar(
-            radius: 20,
-            child: Image.asset(
-              '${troops[profileController.products?.troops![index].name]}',
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Container(
-            width: 15,
-            height: 15,
-            decoration: BoxDecoration(
-                color: Color.fromARGB(255, 59, 59, 59), shape: BoxShape.circle),
-            child: Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Text(
-                ' ${profileController.products?.troops![index].level ?? ''}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: Color.fromARGB(255, 255, 60, 0)),
+  return (profileController.products?.troops![index].village == "home")
+      ? Padding(
+          padding: const EdgeInsets.all(2),
+          child: Stack(
+            clipBehavior: Clip.none,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(3),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Palette.green, width: 2),
+                        borderRadius: BorderRadius.circular(100)),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(100),
+                      onTap: () {},
+                      child: Image.asset(
+                        '${troops[profileController.products?.troops![index].name]}',
+                        height: 60,
+                        width: 60,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
+              Positioned(
+                bottom: -5,
+                right: -5,
+                child: Container(
+                  width: 25,
+                  height: 25,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 59, 59, 59),
+                      shape: BoxShape.circle),
+                  child: Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Center(
+                      child: Text(
+                        ' ${profileController.products?.troops![index].level ?? '0'}',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
-        Positioned(
-          top: 0,
-          right: 0,
-          child: Container(
-            width: 15,
-            height: 15,
-            decoration: BoxDecoration(
-                color: Color.fromARGB(255, 70, 70, 70), shape: BoxShape.circle),
-            child: Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Text(
-                '${profileController.products?.troops![index].maxLevel ?? ''}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: Color.fromARGB(255, 255, 81, 0)),
+              // Positioned(
+              //   top: 0,
+              //   right: 0,
+              //   child: Container(
+              //     width: 15,
+              //     height: 15,
+              //     decoration: const BoxDecoration(
+              //         color: Color.fromARGB(255, 70, 70, 70), shape: BoxShape.circle),
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(1.0),
+              //       child: Text(
+              //         '${profileController.products?.troops![index].maxLevel ?? ''}',
+              //         textAlign: TextAlign.center,
+              //         style: const TextStyle(
+              //             fontSize: 11,
+              //             fontWeight: FontWeight.w600,
+              //             color: Color.fromARGB(255, 255, 81, 0)),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Text(
+              //   profileController.products?.troops![index].name ?? '',
+              //   style: TextStyle(
+              //       fontSize: 11,
+              //       fontWeight: FontWeight.w600,
+              //       color: Palette.brown),
+              // ),
+              const SizedBox(
+                height: 10,
               ),
-            ),
+            ],
           ),
-        ),
-        // Text(
-        //   profileController.products?.troops![index].name ?? '',
-        //   style: TextStyle(
-        //       fontSize: 11,
-        //       fontWeight: FontWeight.w600,
-        //       color: Palette.brown),
-        // ),
-        SizedBox(
-          height: 10,
-        ),
-      ],
-    ),
-  );
+        )
+      : Container();
   // }
   // return Text("Error");
 }

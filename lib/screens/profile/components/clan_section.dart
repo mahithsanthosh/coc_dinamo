@@ -11,11 +11,11 @@ class ClanSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProfileController profileController = Get.put(ProfileController());
     return Container(
-      width: MediaQuery.of(context).size.width * .55,
-      height: 103,
+      width: MediaQuery.of(context).size.width / 3.9,
+      height: 35,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.1),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        color: Colors.brown.withOpacity(.3),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,32 +29,16 @@ class ClanSection extends StatelessWidget {
           Image.network(
             profileController.products?.clan?.badgeUrls?.small ?? '',
             fit: BoxFit.cover,
-            width: 52,
-            height: 52,
+            width: 30,
+            height: 30,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                profileController.products?.clan?.name ?? '',
-                // 'Dinamo',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: Palette.white),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                '${profileController.products?.clan?.tag}',
-                // "2YRL0R8LR",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Palette.white),
-              ),
-            ],
+          Text(
+            profileController.products?.clan?.name ?? '',
+            // 'Dinamo',
+            style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: Palette.white),
           ),
         ],
       ),
